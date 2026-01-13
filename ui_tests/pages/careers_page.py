@@ -39,28 +39,10 @@ class CareersPage(BasePage):
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
         return element
     
-    # Section presence methods
-    def is_life_at_insider_present(self):
-        return self.is_section_present(self.LIFE_AT_INSIDER)
-    
-    def is_locations_present(self):
-        return self.is_section_present(self.LOCATIONS)
-    
-    def is_teams_present(self):
-        return self.is_section_present(self.TEAMS)
+   
     
     # First slide in Life at Insider block
-    def is_first_life_at_insider_slide_visible(self) -> bool:
-        first_slide = self.driver.find_element(*self.FIRST_LIFE_AT_INSIDER_SLIDE)
-        img = first_slide.find_element(By.TAG_NAME, "img")
-        return img.is_displayed()
-    
-    # First location visible
-    def is_first_location_visible(self) -> bool:
-        first_location = self.driver.find_element(*self.FIRST_LOCATION)
-        return first_location.is_displayed()
-    
-    # First team visible
-    def is_first_team_visible(self) -> bool:
-        first_team = self.driver.find_element(*self.FIRST_TEAM)
-        return first_team.is_displayed()
+    def is_first_element_visible(self, locator) -> bool:
+        first_elem = self.driver.find_element(*locator)
+        return first_elem.is_displayed()
+ 
