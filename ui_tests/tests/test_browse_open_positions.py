@@ -16,7 +16,6 @@ SCENARIOS = [
 
 
 @pytest.mark.UI
-@pytest.mark.MYTEST
 @pytest.mark.parametrize("slug, department, location, url_params", SCENARIOS)
 def test_browse_open_propositions(fxt_webdriver, slug, department, location, url_params):
     career_role_page = CareerRolesPage(fxt_webdriver, slug)
