@@ -16,7 +16,10 @@ class CareersPage(BasePage):
                       ".insiderone-locations-slider-slides .swiper-slide:first-child")
     FIRST_TEAM = (By.CSS_SELECTOR, ".insiderone-icon-cards-grid.columns-3 > div:first-child")
     FIRST_LIFE_AT_INSIDER_SLIDE = (By.CSS_SELECTOR, ".insiderone-gallery-slider-slides .swiper-slide:first-child")
-
+    
+    def open(self):
+        self.open_url(self.URL)
+    
     def is_loaded(self) -> bool:
         try:
             self.wait_for_element(self.EXPLORE_OPEN_ROLES)
@@ -33,16 +36,7 @@ class CareersPage(BasePage):
         except TimeoutException:
             return False
     
-    def scroll_to_element(self, locator):
-        """Scroll page until element is in view"""
-        element = self.driver.find_element(*locator)
-        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
-        return element
-    
-   
-    
     # First slide in Life at Insider block
     def is_first_element_visible(self, locator) -> bool:
         first_elem = self.driver.find_element(*locator)
         return first_elem.is_displayed()
- 

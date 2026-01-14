@@ -7,14 +7,12 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 from ui_tests.config import BrowserTypes
 
-DEFAULT_BROWSERS = [browser.value for browser in BrowserTypes]
-
 
 @pytest.fixture()
 def fxt_webdriver(browser_name, request):
     headless = request.config.getoption("--headless")
     
-    if browser_name == "chrome":
+    if browser_name == BrowserTypes.CHROME.value:
         options = webdriver.ChromeOptions()
         if headless:
             options.add_argument("--headless")
@@ -24,7 +22,7 @@ def fxt_webdriver(browser_name, request):
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
     
-    elif browser_name == "firefox":
+    elif browser_name == BrowserTypes.FIREFOX.value:
         options = webdriver.FirefoxOptions()
         if headless:
             options.add_argument("--headless")

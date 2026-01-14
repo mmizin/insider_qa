@@ -17,10 +17,29 @@ class BasePage:
         full_url = f"{self.base_url.rstrip('/')}/{url.lstrip('/')}"
         self.driver.get(full_url)
     
-    def wait_for_element(self, by_locator: tuple[By, str]) -> WebElement:
-        return WebDriverWait(self.driver, self.timeout).until(
+    def wait_for_element(self, by_locator: tuple[By, str], timeout: Optional[int] = 0) -> WebElement:
+        return WebDriverWait(self.driver, timeout or self.timeout).until(
             EC.presence_of_element_located(by_locator)
+        )
+    
+    def wait_for_elements(self, by_locator: tuple[By, str], timeout: Optional[int] = 0) -> WebElement:
+        return WebDriverWait(self.driver, timeout or self.timeout).until(
+            EC.presence_of_all_elements_located(by_locator)
         )
     
     def find_element(self, by_locator: tuple[By, str]):
         return self.wait_for_element(by_locator)
+    
+    def find_elements(self, by_locator: tuple[By, str]):
+        return self.wait_for_elements(by_locator)
+    
+    def scroll_to_element(self, locator):
+        """Scroll page until element is in view"""
+        element = self.find_element(locator)
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+        return element
+    
+    def click(self, locator):
+        element = self.wait_for_element(locator)
+        self.scroll_to_element(locator)
+        element.click()

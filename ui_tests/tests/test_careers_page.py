@@ -9,13 +9,12 @@ SCENARIOS = [
 ]
 
 @pytest.mark.UI
-@pytest.mark.MYTEST
 @pytest.mark.parametrize("name, section_locator, first_item_locator", SCENARIOS)
 def test_careers_page_sections_present(fxt_webdriver, name, section_locator, first_item_locator):
-    careers = CareersPage(fxt_webdriver)
-    careers.open_url(careers.URL)
+    page = CareersPage(fxt_webdriver)
+    page.open(page.URL)
     
-    assert careers.is_loaded(), "Careers page did not load correctly"
+    assert page.is_loaded(), "Careers page did not load correctly"
     
-    assert careers.is_section_present(section_locator), f"{name} section is not present"
-    assert careers.is_first_element_visible(first_item_locator), f"First slide in {name} block is not visible or active"
+    assert page.is_section_present(section_locator), f"{name} section is not present"
+    assert page.is_first_element_visible(first_item_locator), f"First slide in {name} block is not visible or active"
