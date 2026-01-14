@@ -1,3 +1,5 @@
+import random
+
 import pytest
 
 from ui_tests.pages.career_roles_page import CareerRolesPage
@@ -14,7 +16,6 @@ SCENARIOS = [
 
 
 @pytest.mark.UI
-@pytest.mark.MYTEST
 @pytest.mark.parametrize("slug, department, location, url_params", SCENARIOS)
 def test_browse_open_propositions(fxt_webdriver, slug, department, location, url_params):
     career_role_page = CareerRolesPage(fxt_webdriver, slug)
@@ -34,3 +35,6 @@ def test_browse_open_propositions(fxt_webdriver, slug, department, location, url
     assert propositions, "No positions available"
     assert careers_open_position_page.check_positions_attributes(
         propositions), "Positions attributes: location/department are not correct"
+    
+    careers_open_position_page.click_view_role(random.choice(propositions))
+    assert careers_open_position_page.is_redirected_to_lever()

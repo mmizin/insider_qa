@@ -10,6 +10,7 @@ from ui_tests.pages.base_page import BasePage
 
 class CareersOpenPositionsPage(BasePage):
     URL = "/careers/open-positions"
+    REDIRECT_TO_LEVER_URL = "https://jobs.lever.co/insiderone/"
     
     TITLE = (By.XPATH, "//h3[normalize-space()='Browse Open Positions']")
     
@@ -18,6 +19,8 @@ class CareersOpenPositionsPage(BasePage):
     
     FILTER_BY_DEPARTMENT = (By.CSS_SELECTOR, "#filter-by-department")
     FILTER_BY_LOCATION = (By.CSS_SELECTOR, "#filter-by-location")
+    
+    VIEW_ROLE_BUTTON = (By.CSS_SELECTOR, "a.btn.btn-navy.rounded[target='_blank']")
     
     def __init__(self,
                  driver,
@@ -61,7 +64,7 @@ class CareersOpenPositionsPage(BasePage):
             except TimeoutException:
                 pass
         
-    def select_department_by_class(self):
+    def select_department(self):
         self.wait_for_positions_loaded()
         
         select = Select(self.find_element(self.FILTER_BY_DEPARTMENT))
@@ -71,7 +74,7 @@ class CareersOpenPositionsPage(BasePage):
                 return
         raise AssertionError(f"Department/team with code '{self.department[1]}' not found")
     
-    def select_location_by_class(self):
+    def select_location(self):
         select = Select(self.find_element(self.FILTER_BY_LOCATION))
         for option in select.options:
             if self.location[1] in (option.get_attribute("class") or ""):
@@ -82,9 +85,9 @@ class CareersOpenPositionsPage(BasePage):
     
     def apply_filters(self):
         if self.department:
-            self.select_department_by_class()
+            self.select_department()
         if self.location:
-            self.select_location_by_class()
+            self.select_location()
     
     def check_positions_available(self) -> bool:
         try:
@@ -100,3 +103,14 @@ class CareersOpenPositionsPage(BasePage):
             return True
         except AssertionError:
             return False
+    
+    def click_view_role(self, position: WebElement):
+        position.find_element(*self.VIEW_ROLE_BUTTON).click()
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+    
+    def is_redirected_to_lever(self):
+        return self.REDIRECT_TO_LEVER_URL in self.driver.current_url
+    
+    def my_sleep(self):
+        time.sleep(3)
+
