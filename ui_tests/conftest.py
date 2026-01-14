@@ -7,6 +7,7 @@ DEFAULT_BROWSERS = [browser.value for browser in BrowserTypes]
 
 pytest_plugins = [
     "ui_tests.fixtures.fxt_webdriver",
+    "ui_tests.fixtures.fxt_cookie",
 ]
 
 

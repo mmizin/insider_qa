@@ -56,11 +56,11 @@ class CareersOpenPositionsPage(BasePage):
     def wait_for_positions_loaded(self):
         try:
             self.wait_for_element(self.JOBS_LIST)
-            time.sleep(2)
+            time.sleep(3)
         except TimeoutException:
             try:
                 self.wait_for_element(self.NO_POSITIONS_AVAILABLE)
-                time.sleep(2)
+                time.sleep(3)
             except TimeoutException:
                 pass
         

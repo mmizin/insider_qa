@@ -12,7 +12,7 @@ SCENARIOS = [
 @pytest.mark.parametrize("name, section_locator, first_item_locator", SCENARIOS)
 def test_careers_page_sections_present(fxt_webdriver, name, section_locator, first_item_locator):
     page = CareersPage(fxt_webdriver)
-    page.open(page.URL)
+    page.open()
     
     assert page.is_loaded(), "Careers page did not load correctly"
     
