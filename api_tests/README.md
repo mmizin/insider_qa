@@ -1,10 +1,10 @@
-# API Test Automation – PetStore
+# 💻 API Test Automation – PetStore 🐍
 
 This project contains automated API tests for the [PetStore Swagger API](https://petstore.swagger.io/).
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 api_tests/
@@ -35,7 +35,7 @@ api_tests/
 
 ---
 
-## Test Features
+## 👷  Test Features
 
 - **CRUD operations for pets**
   - Create, Read, Update, Delete
@@ -51,7 +51,7 @@ api_tests/
 
 ---
 
-## Running Tests
+## 🧪 Running Tests
 
 Install dependencies:
 
@@ -79,7 +79,7 @@ Run tests with markers:
 pytest -m "API and CREATE_PET" -v
 ```
 ---
-### Notes
+### 🤘 Notes
 - Uses requests library for HTTP calls.
 - Image upload uses in-memory files via io.BytesIO.
 - All tests are independent and use fixtures for setup/teardown.
