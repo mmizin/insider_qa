@@ -1,4 +1,4 @@
-# UI Tests – Selenium + Pytest
+# 🌎 UI Tests – Selenium + Pytest 🐍
 
 UI automation framework for testing Insider / InsiderOne web application using
 Python, Selenium, Pytest and Page Object Model (POM).

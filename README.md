@@ -1,16 +1,10 @@
-# Test Automation Project – UI & API
+# 🔥🐞 Test Automation Project – UI & API 🐞🔥
 
 This repository contains automated test suites for **UI** and **API** testing, implemented in Python using **Selenium** for UI and **requests** for API.  
 
 ---
 
-## Project Overview
-
-This project covers the following areas:
-
-# Test Automation Project
-
-## Manual Testing Scenarios Analysis
+## ✍️ Manual Testing Scenarios Analysis
 
 1. **Pencil with Eraser Testing**  
    Full functional, usability, performance, load, stress, and security testing scenarios.  
@@ -22,7 +16,7 @@ This project covers the following areas:
 
 ---
 
-## UI Test Automation
+## 💻🌎 UI Test Automation
 
 - Framework: **Python + Pytest + Selenium**
 - Page Object Model fully implemented
@@ -32,7 +26,7 @@ This project covers the following areas:
 
 ---
 
-## API Test Automation
+## 💻 👷 API Test Automation
 
 - Framework: **Python + Pytest + Requests**
 - CRUD operations for `Pet` endpoints ([Swagger Petstore](https://petstore.swagger.io/))
@@ -42,7 +36,7 @@ This project covers the following areas:
 
 ---
 
-## Project Structure
+## 🌳 Project Structure
 
 ```text
 ui_tests/ and api_tests/ combined structure:
@@ -88,12 +82,10 @@ API Testing
 │ └── generate_image_file.py
 ```
 
----
-
 
 ---
 
-## Key Features
+## 🔑 Key Features
 
 - **UI Tests**
   - Full POM implementation
@@ -108,6 +100,7 @@ API Testing
   - Positive and negative test scenarios
   - Image upload support (in-memory)
   - Payload builders & enumerations
+  -   - Parallel execution via `pytest-xdist`
 
 - **General**
   - Independent, reusable fixtures
@@ -116,7 +109,7 @@ API Testing
 
 ---
 
-## Running Tests
+## 🧑‍💻 Running Tests
 
 **Install dependencies:**
 
@@ -146,7 +139,7 @@ Run tests by marker:
 pytest -m "API and CREATE_PET" -v
 ```
 
-### Notes
+### 🤘 Notes
 
 - Uses requests library for API calls.
 - Image upload uses in-memory files via io.BytesIO.
